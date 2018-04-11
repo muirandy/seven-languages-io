@@ -1,13 +1,13 @@
 Number fib := method(
   values := list(1,1)
   if (self == 1) then(
-    self println
+    return self 
   ) else(
-    if (self == 2) then (1 println) else(
+    if (self == 2) then (return 1) else(
       for(i, 3, self,
         self fibAtIndex(values)
       )
-      values last println
+      return values last 
     )
   )
 )
@@ -18,10 +18,10 @@ Number fibAtIndex := method(values,
   values
 )
 
-1 fib 
-2 fib
-3 fib 
-4 fib 
-45 fib
-2000 fib
-1146 fib 
+1 fib println
+2 fib println
+3 fib println
+4 fib println 
+45 fib println
+2000 fib println
+1146 fib println
