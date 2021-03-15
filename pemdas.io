@@ -15,10 +15,15 @@ Pemdas evaluateExpression := method(expression,
   if (e, "Invalid record error", doString(expression))
 )
 
+Pemdas stripBraces := method(expression,
+  sz := (expression size) - 1
+  expression exSlice(1, sz)
+)
+
 Pemdas pemdas := method(expression,
 
     if((self areBracesBalanced (expression)),
-      (self evaluateExpression (expression)),
+      (self evaluateExpression (self stripBraces (expression))),
       "Invalid record error")
 
 
