@@ -16,18 +16,19 @@
 
 Assert := Object clone
 
-Assert areEqual := method(lhObj, rhObj, 
+Assert isEqual := method(lhObj, rhObj, 
 	(
-		if(lhObj type != rhObj type, (Exception raise("Not of same type!")))
+		if(lhObj type != rhObj type, (Exception raise("Expected equality, but prototypes are different")))
 		if(lhObj isNil, return nil)
-		if(lhObj slotNames != rhObj slotNames, (Exception raise("Different list of slotNames")))
+		if(lhObj slotNames != rhObj slotNames, (Exception raise("Expected equality, but slots are different")))
 		lhObj slotNames foreach(s, 
-			if(lhObj getSlot(s) != rhObj getSlot(s), (Exception raise("Slot {#s} differs!")))
+			if(lhObj getSlot(s) != rhObj getSlot(s), (Exception raise("Expected equality, but Slot {#s} differs!")))
 		)
+                if(lhObj != rhObj, (Exception raise("Expected " .. lhObj .. ", but was: " .. rhObj )))
 	)
 )
 
-Assert areNotEqual := method(lhObj, rhObj,
+Assert isNotEqual := method(lhObj, rhObj,
 	(
 		e := try(areEqual(lhObj, rhObj)) 
 		e catch(Exception, return nil)
@@ -38,14 +39,14 @@ Assert areNotEqual := method(lhObj, rhObj,
 Assert isTrue := method(boolExpr,
 	(
 		isNotNull(boolExpr)
-		if(boolExpr == false, (Exception raise("Failed!")))
+		if(boolExpr == false, (Exception raise("Expected true but was false")))
 	)
 )
 
 Assert isFalse := method(boolExpr,
 	(
 		isNotNull(boolExpr)
-		if(boolExpr == true, (Exception raise("Failed!")))
+		if(boolExpr == true, (Exception raise("Expected false but was true")))
 	)
 )
 
