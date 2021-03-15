@@ -1,3 +1,8 @@
+OperatorTable addOperator("^", 1)
+Number ^ := method(other,
+  self ** other
+)
+
 Pemdas := Object clone
 
 Pemdas areBracesBalanced := method(expression,
