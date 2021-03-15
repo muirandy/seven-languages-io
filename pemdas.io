@@ -21,10 +21,7 @@ Pemdas stripBraces := method(expression,
 )
 
 Pemdas pemdas := method(expression,
-
     if((self areBracesBalanced (expression)),
       (self evaluateExpression (self stripBraces (expression))),
       "Invalid record error")
-
-
 )
