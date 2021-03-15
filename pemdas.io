@@ -8,6 +8,18 @@ Pemdas areBracesBalanced := method(expression,
   lhs and rhs
 )
 
+Pemdas evaluateExpression := method(expression,
+  e := try(
+    doString(expression)
+  )
+  if (e, "Invalid record error", doString(expression))
+)
+
 Pemdas pemdas := method(expression,
-  if((self areBracesBalanced (expression)), (doString(expression)), "Invalid record error")
+
+    if((self areBracesBalanced (expression)),
+      (self evaluateExpression (expression)),
+      "Invalid record error")
+
+
 )
